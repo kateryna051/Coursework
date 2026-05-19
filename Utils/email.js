@@ -9,8 +9,8 @@ exports.emailSend = async (req, res) => {
       host: 'smtp.mailtrap.io',
       port: 2525,
       auth: {
-        user: 'df98fa7359fafc',  // Your Mailtrap username
-        pass: '1908b368f0ea29',   // Your Mailtrap password
+        user: 'user',  // Your Mailtrap username
+        pass: 'password',   // Your Mailtrap password
       },
     });
 

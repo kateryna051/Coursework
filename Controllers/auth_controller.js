@@ -67,52 +67,6 @@ exports.register = async_error_handler(async (req, res, next) => {
     }
 });
 
-
-/*exports.signup = async_error_handler(async (req, res) => {
-    try {
-        const { name, email, password, confirmPassword} = req.body;
-
-        if (password !== confirmPassword) {
-            return res.status(400).json({ error: 'Password and confirmPassword do not match' });
-        }
-
-        // Create new user in the database
-        const newUser = await User.create({ name, email, password});
-
-        // Send success response
-        res.status(201).json({ message: 'User created successfully', user: newUser });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});*/
-
-
-/*exports.login = async_error_handler(async (req, res, next) => {
-    const { email, password } = req.body;
-
-    // Check if email and password are provided
-    if (!email || !password) {
-        return next(new CustomError('Please provide email and password', 400));
-    }
-
-    // Check if user exists and password is correct
-    const user = await User.findOne({ email }).select('+password');
-    if (!user || !(await user.comparePasswordInDb(password, user.password))) {
-        return next(new CustomError('Incorrect email or password', 401));
-    }
-
-    // Create token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN,
-    });
-
-    // Send token in response
-    res.status(200).json({
-        status: 'success',
-        token,
-    });
-});*/
 exports.login = async_error_handler(async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -156,40 +110,6 @@ exports.login = async_error_handler(async (req, res, next) => {
 });
 
 
-
-
-
-/*exports.protect = async_error_handler(async (req, res, next) => {
-    const testToken = req.headers.authorization;
-    console.log('Authorization Header:', testToken);
-    let token;
-    if (testToken && testToken.startsWith('Bearer')) {
-        token = testToken.split(' ')[1];
-    }
-    if (!token) {
-        return next(new CustomError('You are not logged in!', 401));
-    }
-    console.log('Extracted Token:', token);
-    try {
-        const decodedToken = await util.promisify(jwt.verify)(token, process.env.SECRET_STR);
-        const user = await User.findById(decodedToken.id);
-
-        if (!user) {
-            return next(new CustomError('The user with given token does not exist', 401));
-        }
-
-        const isPasswordChanged = await user.isPasswordChanged(decodedToken.iat);
-
-        if (isPasswordChanged) {
-            return next(new CustomError('The password has been changed recently. Please log in again', 401));
-        }
-
-        req.user = user;
-        next();
-    } catch (error) {
-        return next(new CustomError('Invalid token. Please log in again', 401));
-    }
-});*/
 exports.protect = async_error_handler(async (req, res, next) => {
     const token = req.cookies.jwt; // Extract token from cookie
 

@@ -1,0 +1,49 @@
+name: simple_counter_app
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  http: ^1.2.2  # Keep this
+  http_parser: ^4.0.0  # Correct indentation here
+  image_picker: ^0.8.5+3  # Add this if not already included
+  path: ^1.8.3
+  html: ^0.15.0
+  flutter_secure_storage: ^5.0.2
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.9.2
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/favicon.png"
+
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Jua
+      fonts:
+        - asset: assets/fonts/Jua-Regular.ttf
+
+  assets:
+    - assets/siauliai-christmas.jpg
+    - assets/lithuania.jpg
+    - assets/active-trips.jpg
+    - assets/calm-rest.jpg
+    - assets/local-events.jpg
+    - assets/cultural-places.jpg
